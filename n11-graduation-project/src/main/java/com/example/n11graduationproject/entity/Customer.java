@@ -1,4 +1,4 @@
-package com.example.n11graduationproject.user;
+package com.example.n11graduationproject.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,24 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "\"user\"")
-//@Table(name = "users")
-public class User implements Serializable {
+@Table(name = "customer")
+public class Customer implements Serializable {
 
-    @SequenceGenerator(name = "generator", sequenceName = "user_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "generator", sequenceName = "customer_id_seq", allocationSize = 1)
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "id_number", length = 50)
+    @Column(name = "id_number", unique = true, length = 50)
     private String idNumber;
 
     @Column(name = "name", length = 50)
@@ -35,14 +33,14 @@ public class User implements Serializable {
     @Column(name = "PHONE", length = 15)
     private String phone;
 
-    @Column(name = "monthly_income", scale=2, precision = 15)
-    private BigDecimal monthlyIncome;
+    @Column(name = "monthly_income")
+    private Double monthlyIncome;
 
     @Column(name = "date_of_birth")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
-    @Column(name = "monthly_income", scale=2, precision = 15)
-    private BigDecimal guaranteeFee;
+    @Column(name = "guarantee_fee")
+    private Double guaranteeFee;
 
 }

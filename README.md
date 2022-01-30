@@ -4,9 +4,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="left">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/credit-app.png" alt="Logo" width="120" height="100">
-  </a>
 
 <h3 align="center">Credit Application</h3>
 

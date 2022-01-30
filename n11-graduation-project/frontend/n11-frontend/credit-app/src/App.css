@@ -1,0 +1,72 @@
+.App {
+  background-color: #B1D4E0;
+}
+.app-navbar{
+  background-color: #145DA0;
+}
+.second{
+  background-color: #b91111;
+
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.text-field{
+  min-height: 30px;
+  min-width: 300px;
+  margin: 15px;
+  font-size: 20px;
+}
+
+.button{
+  min-height: 30px;
+  min-width: 350px;
+}
+.content {
+  background-color: bisque;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: black;
+  text-align: left;
+}
+.content2 {
+  background-color: #4677ce;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: black;
+  text-align: left;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.site-calendar-demo-card {
+  width: 300px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}

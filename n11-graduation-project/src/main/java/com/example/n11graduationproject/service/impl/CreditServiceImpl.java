@@ -5,7 +5,7 @@ import com.example.n11graduationproject.dto.ResponseCreditDTO;
 import com.example.n11graduationproject.entity.Customer;
 import com.example.n11graduationproject.enums.EnumCreditStatus;
 import com.example.n11graduationproject.exception.CreditApplyIsNotExistException;
-import com.example.n11graduationproject.exception.CreditIApplyIsAlreadyExistException;
+import com.example.n11graduationproject.exception.CreditApplyIsAlreadyExistException;
 import com.example.n11graduationproject.exception.CustomerIsNotExistException;
 import com.example.n11graduationproject.repository.CreditRepository;
 import com.example.n11graduationproject.repository.CustomerRepository;
@@ -42,7 +42,7 @@ public class CreditServiceImpl implements CreditService {
         if(creditRepository.findByIdNumberAndDateOfBirth(customer.getIdNumber(),customer.getDateOfBirth()) != null)
         {
             log.error("The customer has already applied to credit!");
-            throw new CreditIApplyIsAlreadyExistException("The customer with " + idNumber + " identity number has already applied to credit!");
+            throw new CreditApplyIsAlreadyExistException("The customer with " + idNumber + " identity number has already applied to credit!");
         }
 
         var resultCreditDTO = ResponseCreditDTO.builder().build();

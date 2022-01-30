@@ -1,34 +1,25 @@
 package com.example.n11graduationproject.service;
 
 import com.example.n11graduationproject.converter.CreditConverter;
-import com.example.n11graduationproject.converter.CustomerConverter;
-import com.example.n11graduationproject.dto.CustomerDTO;
 import com.example.n11graduationproject.dto.ResponseCreditDTO;
-import com.example.n11graduationproject.entity.Credit;
 import com.example.n11graduationproject.entity.Customer;
 import com.example.n11graduationproject.enums.EnumCreditStatus;
 import com.example.n11graduationproject.exception.CreditApplyIsNotExistException;
-import com.example.n11graduationproject.exception.CreditIApplyIsAlreadyExistException;
+import com.example.n11graduationproject.exception.CreditApplyIsAlreadyExistException;
 import com.example.n11graduationproject.exception.CustomerIsNotExistException;
 import com.example.n11graduationproject.repository.CreditRepository;
 import com.example.n11graduationproject.repository.CustomerRepository;
 import com.example.n11graduationproject.service.impl.CreditServiceImpl;
 import com.example.n11graduationproject.service.impl.CustomerServiceImpl;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -78,8 +69,8 @@ public class CreditServiceTest {
 
         when(creditService.applyCredit(customer.getIdNumber())).thenReturn(ResponseCreditDTO.builder().build());
 
-        when(creditRepository.findByIdNumberAndDateOfBirth(customer.getIdNumber(),customer.getDateOfBirth())).thenThrow(new CreditIApplyIsAlreadyExistException("The customer with " + customer.getIdNumber() + " identity number has already applied to credit!"));
-        assertThrows(CreditIApplyIsAlreadyExistException.class, () -> creditService.applyCredit(customer.getIdNumber()));
+        when(creditRepository.findByIdNumberAndDateOfBirth(customer.getIdNumber(),customer.getDateOfBirth())).thenThrow(new CreditApplyIsAlreadyExistException("The customer with " + customer.getIdNumber() + " identity number has already applied to credit!"));
+        assertThrows(CreditApplyIsAlreadyExistException.class, () -> creditService.applyCredit(customer.getIdNumber()));
     }
 
     @Test

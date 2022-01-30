@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO save(@Valid CreateCustomerDTO createCustomerDTO) {
+    public CustomerDTO save(CreateCustomerDTO createCustomerDTO) {
         var customer = CustomerConverter.INSTANCE.convertCreateCustomerDTOToCustomer(createCustomerDTO);
         customerRepository.save(customer);
         return CustomerConverter.INSTANCE.convertCustomerToCustomerDTO(customer);

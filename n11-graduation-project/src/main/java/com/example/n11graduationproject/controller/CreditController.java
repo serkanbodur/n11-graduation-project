@@ -2,6 +2,9 @@ package com.example.n11graduationproject.controller;
 
 import com.example.n11graduationproject.dto.ResponseCreditDTO;
 import com.example.n11graduationproject.service.CreditService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,10 +18,13 @@ import java.util.Date;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/credits")
+@Tag(name = "Credits", description = "Credit Controller")
 public class CreditController {
 
     private final CreditService creditService;
 
+    @Operation(summary = "Create a new credit apply using idNumber")
+    @Parameter(required = true, name = "userIdNumber")
     @PostMapping()
     public ResponseEntity<ResponseCreditDTO> applyCredit(@RequestParam String userIdNumber) {
         var creditDTO = creditService.applyCredit(userIdNumber);
@@ -27,8 +33,9 @@ public class CreditController {
         return new ResponseEntity<>(creditDTO, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get a credit apply using idNumber and birthdate")
     @GetMapping(value = "")
-    public ResponseEntity<ResponseCreditDTO> getCredit(@RequestParam String userIdNumber, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth) {
+    public ResponseEntity<ResponseCreditDTO> getCredit(@RequestParam @Parameter String userIdNumber, @RequestParam @Parameter @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth) {
         var creditDTO = creditService.findCreditApply(userIdNumber, dateOfBirth);
         log.info("The credit score calculated successfully");
         return new ResponseEntity<>(creditDTO, HttpStatus.OK);

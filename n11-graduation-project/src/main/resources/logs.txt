@@ -40,4 +40,32 @@
 ""2022-01-30 12:17:51 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - Started N11GraduationProjectApplicationTests in 23.905 seconds (JVM running for 29.352)
 ""2022-01-30 12:17:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 ""2022-01-30 12:17:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+""2022-01-30 17:48:02 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - Starting N11GraduationProjectApplicationTests using Java 15.0.1 on DESKTOP-EGJPQEK with PID 9048 (started by Serkan Bodur in C:\Users\Serkan Bodur\Desktop\n11-talenthub-bootcamp-graduation-project-serkanbodur\n11-graduation-project)
+""2022-01-30 17:48:02 [main] DEBUG c.e.n.N11GraduationProjectApplicationTests - Running with Spring Boot v2.6.2, Spring v5.3.14
+""2022-01-30 17:48:02 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - No active profile set, falling back to default profiles: default
+""2022-01-30 17:48:06 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2022-01-30 17:48:06 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.3.Final
+""2022-01-30 17:48:06 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2022-01-30 17:48:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+""2022-01-30 17:48:08 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+""2022-01-30 17:48:08 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+""2022-01-30 17:48:08 [main] WARN  o.h.b.i.InFlightMetadataCollectorImpl - HHH000069: Duplicate generator name generator
+""2022-01-30 17:48:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2022-01-30 17:48:13 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - Started N11GraduationProjectApplicationTests in 11.599 seconds (JVM running for 14.799)
+""2022-01-30 17:48:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+""2022-01-30 17:48:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+""2022-01-30 19:33:33 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - Starting N11GraduationProjectApplicationTests using Java 15.0.1 on DESKTOP-EGJPQEK with PID 9832 (started by Serkan Bodur in C:\Users\Serkan Bodur\Desktop\n11-talenthub-bootcamp-graduation-project-serkanbodur\n11-graduation-project)
+""2022-01-30 19:33:33 [main] DEBUG c.e.n.N11GraduationProjectApplicationTests - Running with Spring Boot v2.6.2, Spring v5.3.14
+""2022-01-30 19:33:33 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - No active profile set, falling back to default profiles: default
+""2022-01-30 19:33:37 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2022-01-30 19:33:37 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.3.Final
+""2022-01-30 19:33:37 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2022-01-30 19:33:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+""2022-01-30 19:33:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+""2022-01-30 19:33:38 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+""2022-01-30 19:33:39 [main] WARN  o.h.b.i.InFlightMetadataCollectorImpl - HHH000069: Duplicate generator name generator
+""2022-01-30 19:33:40 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2022-01-30 19:33:46 [main] INFO  c.e.n.N11GraduationProjectApplicationTests - Started N11GraduationProjectApplicationTests in 14.433 seconds (JVM running for 17.58)
+""2022-01-30 19:33:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+""2022-01-30 19:33:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 "

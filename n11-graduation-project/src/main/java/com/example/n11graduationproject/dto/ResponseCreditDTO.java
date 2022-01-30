@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 @Builder
 public class ResponseCreditDTO {
-    private Long id;
     private Double creditScore;
     private EnumCreditStatus creditStatus;
     private Double creditLimit;

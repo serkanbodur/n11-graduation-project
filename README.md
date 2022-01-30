@@ -57,27 +57,27 @@ Project Description:
 
 <p align="center">Customer Add</p>
 <p align="center">
-<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/add-customer.PNG" alt="Logo" width="120" height="80">
+<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/add-customer.PNG" alt="Logo" width="800" height="600">
 </p>
 
 <p align="center">Credit Apply</p>
 <p align="center">
-<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-apply.PNG" alt="Logo" width="120" height="80">
+<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-apply.PNG" alt="Logo" width="800" height="600">
 </p>
 
 <p align="center">Credit Result</p>
 <p align="center">
-<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-result.PNG" alt="Logo" width="120" height="80">
+<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-result.PNG" alt="Logo" width="800" height="600">
 </p>
 
 <p align="center">Credit Apply Result</p>
 <p align="center">
-<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/creidt-apply-result.PNG" alt="Logo" width="120" height="80">
+<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/creidt-apply-result.PNG" alt="Logo" width="800" height="300">
 </p>
 
 <p align="center">Credit Query Result</p>
 <p align="center">
-<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-query-result.PNG" alt="Logo" width="120" height="80">
+<img src="https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-serkanbodur/blob/main/n11-graduation-project/images/credit-query-result.PNG" alt="Logo" width="800" height="300">
 </p>
 
 

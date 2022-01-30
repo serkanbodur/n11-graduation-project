@@ -23,6 +23,7 @@ public class CreditController {
     public ResponseEntity<ResponseCreditDTO> applyCredit(@RequestParam String userIdNumber) {
         var creditDTO = creditService.applyCredit(userIdNumber);
         log.info("The credit score and credit limit are created");
+        log.info("Dear customer. Your credit apply has been finalized... Sending message");
         return new ResponseEntity<>(creditDTO, HttpStatus.OK);
     }
 

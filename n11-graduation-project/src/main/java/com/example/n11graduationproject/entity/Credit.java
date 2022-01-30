@@ -4,6 +4,8 @@ import com.example.n11graduationproject.enums.EnumCreditStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +32,7 @@ public class Credit implements Serializable {
     private Double creditLimit;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

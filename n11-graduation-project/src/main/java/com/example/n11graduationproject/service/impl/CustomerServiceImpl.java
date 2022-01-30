@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO save(CreateCustomerDTO createCustomerDTO) {
+    public CustomerDTO save(@Valid CreateCustomerDTO createCustomerDTO) {
         var customer = CustomerConverter.INSTANCE.convertCreateCustomerDTOToCustomer(createCustomerDTO);
         customerRepository.save(customer);
         return CustomerConverter.INSTANCE.convertCustomerToCustomerDTO(customer);
@@ -40,11 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO update(CustomerDTO customerDTO, Long id) {
-        // var customer = customerRepository.findById(id).orElseThrow(() -> new CustomerIsNotExistException("The customer is not found!"));
         var optionalCustomer = customerRepository.findById(id);
         Customer customer;
-        if(!optionalCustomer.isPresent())
-        {
+        if (!optionalCustomer.isPresent()) {
             log.error("The customer is not found!");
             throw new CustomerIsNotExistException("The customer is not found!");
         }

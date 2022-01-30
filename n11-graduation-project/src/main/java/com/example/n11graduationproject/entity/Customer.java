@@ -21,7 +21,7 @@ public class Customer implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "id_number", unique = true, length = 50)
+    @Column(name = "id_number", unique = true, length = 50, nullable = false)
     private String idNumber;
 
     @Column(name = "name", length = 50)

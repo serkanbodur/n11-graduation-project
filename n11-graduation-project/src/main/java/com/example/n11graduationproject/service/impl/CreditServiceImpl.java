@@ -5,17 +5,14 @@ import com.example.n11graduationproject.dto.ResponseCreditDTO;
 import com.example.n11graduationproject.entity.Customer;
 import com.example.n11graduationproject.enums.EnumCreditStatus;
 import com.example.n11graduationproject.exception.CreditApplyIsNotExistException;
+import com.example.n11graduationproject.exception.CreditIApplyIsAlreadyExistException;
 import com.example.n11graduationproject.exception.CustomerIsNotExistException;
 import com.example.n11graduationproject.repository.CreditRepository;
 import com.example.n11graduationproject.repository.CustomerRepository;
 import com.example.n11graduationproject.service.CreditService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -42,53 +39,45 @@ public class CreditServiceImpl implements CreditService {
             throw new CustomerIsNotExistException("The customer with " + idNumber + " identity number is not found");
         }
 
+        if(creditRepository.findByIdNumberAndDateOfBirth(customer.getIdNumber(),customer.getDateOfBirth()) != null)
+        {
+            log.error("The customer has already applied to credit!");
+            throw new CreditIApplyIsAlreadyExistException("The customer with " + idNumber + " identity number has already applied to credit!");
+        }
+
         var resultCreditDTO = ResponseCreditDTO.builder().build();
         var creditScore = calculateCreditScore(customer.getMonthlyIncome(),customer.getGuaranteeFee(), customer.getIdNumber());
 
-        // resultCreditDTO.setCreditScore(creditScore);
+        resultCreditDTO.setCreditScore(creditScore);
         resultCreditDTO.setCustomerId(customer.getId());
         resultCreditDTO.setCreditStatus(EnumCreditStatus.APPROVED);
+
+        Double creditLimit = 0.0;
+        boolean haveGuaranteeFee= customer.getGuaranteeFee() > 0;
 
         if (creditScore < 500) {
             resultCreditDTO.setCreditStatus(EnumCreditStatus.REJECT);
         }
         else if (creditScore < 1000) {
             if (customer.getMonthlyIncome() < 5000) {
-                if (customer.getGuaranteeFee() > 0) {
-                    resultCreditDTO.setCreditLimit(10000 + customer.getGuaranteeFee() / 10);
-                }
-                else{
-                    resultCreditDTO.setCreditLimit(Double.valueOf(10000));
-                }
+                creditLimit = 10000.0;
+                if(haveGuaranteeFee) creditLimit += customer.getGuaranteeFee() / 10;
             }
             else if (customer.getMonthlyIncome() < 10000) {
-                if (customer.getGuaranteeFee() > 0) {
-                    resultCreditDTO.setCreditLimit(20000 + customer.getGuaranteeFee() / 5);
-                }
-                else {
-                    resultCreditDTO.setCreditLimit(Double.valueOf(20000));
-                }
-
+                creditLimit = 20000.0;
+                if(haveGuaranteeFee) creditLimit += customer.getGuaranteeFee() / 5;
             }
             else {
-                if (customer.getGuaranteeFee() > 0) {
-                    resultCreditDTO.setCreditLimit((customer.getMonthlyIncome()*creditLimitMultiplier/2)+(customer.getGuaranteeFee()/4));
-                }
-                else{
-                    resultCreditDTO.setCreditLimit(customer.getMonthlyIncome()*creditLimitMultiplier/2);
-                }
+                creditLimit = customer.getMonthlyIncome() * creditLimitMultiplier / 2;
+                if(haveGuaranteeFee) creditLimit += customer.getGuaranteeFee() / 4;
             }
         }
         else{
-            if(customer.getGuaranteeFee() > 0) {
-                resultCreditDTO.setCreditLimit((customer.getMonthlyIncome()*creditLimitMultiplier)+(customer.getGuaranteeFee()/2));
-            }
-            else {
-                resultCreditDTO.setCreditLimit(customer.getMonthlyIncome()*creditLimitMultiplier);
-            }
-
+            creditLimit = customer.getMonthlyIncome() * creditLimitMultiplier;
+            if(haveGuaranteeFee) creditLimit += customer.getGuaranteeFee() / 2;
         }
 
+        resultCreditDTO.setCreditLimit(creditLimit);
         var resultCredit = CreditConverter.INSTANCE.convertResponseCreditDTOToCredit(resultCreditDTO);
         creditRepository.save(resultCredit);
         return resultCreditDTO;

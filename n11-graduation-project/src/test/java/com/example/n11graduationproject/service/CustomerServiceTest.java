@@ -10,6 +10,7 @@ import com.example.n11graduationproject.repository.CustomerRepository;
 import com.example.n11graduationproject.service.impl.CustomerServiceImpl;
 import junit.framework.TestCase;
 import org.checkerframework.checker.units.qual.C;
+import org.hibernate.mapping.Any;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -45,8 +46,8 @@ public class CustomerServiceTest extends TestCase {
     public void shouldValidateFındAllCustomerTest() {
         List<Customer> customers = new ArrayList<Customer>();
 
-        var customerOne = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", Double.valueOf(100), Date.valueOf("2022-01-01"), Double.valueOf(100));
-        var customerTwo = new Customer(Long.valueOf(2), "222", "secondName", "secondSurname", "22222", Double.valueOf(200), Date.valueOf("2022-01-01"), Double.valueOf(200));
+        var customerOne = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", 1000.0, Date.valueOf("2022-01-01"), 10.0);
+        var customerTwo = new Customer(Long.valueOf(2), "222", "secondName", "secondSurname", "22222", 200.0, Date.valueOf("2022-01-01"), 200.0);
 
         customers.add(customerOne);
         customers.add(customerTwo);
@@ -65,35 +66,34 @@ public class CustomerServiceTest extends TestCase {
 
     }
 
-    /*
-    // TODO save set id
     @Test
     public void shouldValidateSaveCustomerTest() {
 
-        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", Double.valueOf(1000), Date.valueOf("2022-01-01"), Double.valueOf(10));
-
+        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", 1000.0, Date.valueOf("2022-01-01"), 10.0);
         when(customerRepository.save(customer)).thenReturn(customer);
 
-        var createCustomerDTO = CreateCustomerDTO.builder().build();
-        var customerDTO = CustomerConverter.INSTANCE.convertCustomerToCustomerDTO(customer);
+        var createCustomerDTO = CustomerConverter.INSTANCE.convertCustomerToCreateCustomerDTO(customer);
 
         var savedCustomerDTO = customerService.save(createCustomerDTO);
 
-        assertEquals(savedCustomerDTO, customerDTO);
-    }
 
-     */
+        assertEquals(savedCustomerDTO.getIdNumber(), createCustomerDTO.getIdNumber());
+        assertEquals(savedCustomerDTO.getMonthlyIncome(), createCustomerDTO.getMonthlyIncome());
+        assertEquals(savedCustomerDTO.getGuaranteeFee(), createCustomerDTO.getGuaranteeFee());
+        assertEquals(savedCustomerDTO.getName(), createCustomerDTO.getName());
+        assertEquals(savedCustomerDTO.getDateOfBirth(), createCustomerDTO.getDateOfBirth());
+    }
 
     @Test
     public void updateCustomerTest() {
 
-        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", Double.valueOf(1000), Date.valueOf("2022-01-01"), Double.valueOf(10));
+        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", 1000.0, Date.valueOf("2022-01-01"), 10.0);
 
         when(customerRepository.save(customer)).thenReturn(any());
 
         when(customerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
 
-        var updatedCustomer = new Customer(Long.valueOf(1), "222", "secondName", "secondSurname", "22222", Double.valueOf(2000), Date.valueOf("2022-02-01"), Double.valueOf(20));
+        var updatedCustomer = new Customer(Long.valueOf(1), "222", "secondName", "secondSurname", "22222", 2000.0, Date.valueOf("2022-02-01"),20.0);
         var tempUpdatedCustomerDTO = CustomerConverter.INSTANCE.convertCustomerToCustomerDTO(updatedCustomer);
 
         CustomerDTO customerDTO = CustomerConverter.INSTANCE.convertCustomerToCustomerDTO(updatedCustomer);
@@ -106,43 +106,28 @@ public class CustomerServiceTest extends TestCase {
     @Test
     public void shouldNotValidateCustomerWhenCustomerIdNotFound() {
 
-        Exception exception = assertThrows(CustomerIsNotExistException.class, () -> {
-            customerService.update(any(), 0L);
-        });
-
-        String expectedMessage = "The customer is not found!";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage));
+        when(customerRepository.findById(1L)).thenThrow(new CustomerIsNotExistException("The customer is not found!"));
+        assertThrows(CustomerIsNotExistException.class, () -> customerService.update(CustomerDTO.builder().build(), 1L));
     }
-
 
     @Test
     public void deleteCustomerTest() {
 
-        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", Double.valueOf(1000), Date.valueOf("2022-01-01"), Double.valueOf(10));
-
+        var customer = new Customer(Long.valueOf(1), "111", "firstName", "firstSurname", "11111", 1000.0, Date.valueOf("2022-01-01"), 10.0);
         customerRepository.save(customer);
 
         when(customerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
 
         customerService.deleteById(customer.getId());
 
-        when(customerRepository.findById(customer.getId())).thenReturn(null);
-
+        verify(customerRepository, times(1)).deleteById(eq(customer.getId()));
     }
 
     @Test
     public void shouldNotValidateCustomerWhenCustomerIsNotFound() {
 
-        Exception exception = assertThrows(CustomerIsNotExistException.class, () -> {
-            customerService.deleteById(1L);
-        });
-
-        String expectedMessage = "The customer is not found!";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage));
+        when(customerRepository.findById(1L)).thenThrow(new CustomerIsNotExistException("The customer is not found!"));
+        assertThrows(CustomerIsNotExistException.class, () -> customerService.deleteById(1L));
     }
 
 }
